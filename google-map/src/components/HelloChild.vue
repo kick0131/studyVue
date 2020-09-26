@@ -1,24 +1,22 @@
 <template>
-  <div>
-    <p>{{ title }}</p>
-    <v-btn small color="primary" v-on:click="incrementCounter">{{ counter }}</v-btn>
+  <div class="mycom">
+    <p>name:<slot name="nm">Chihiro</slot></p>
+    <p>addr:<slot name="ad">Tokyo</slot></p>
+    <p>
+      newname:<slot name="hira" :abc="userNm">{{ userNm.enName }}</slot>
+    </p>
   </div>
 </template>
-
 <script>
 export default {
-  data: function () {
+  data() {
     return {
-      title: 'はろー！こども！',
-      counter: 0
-    }
+      userNm: {
+        enName: "Chihiro",
+        jpName: "ちひろ", // ←slot内で参照したいデータ
+      },
+    };
   },
-  methods: {
-    incrementCounter: function () {
-      this.counter += 1
-      // 親コンポーネントのincrementが呼び出す（実行）
-      this.$emit('increment', 2)
-    }
-  }
-}
+};
 </script>
+<style></style>

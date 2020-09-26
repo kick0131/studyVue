@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-      <li v-for="todo in todos" v-bind:key="todo.id">
+      <li v-for="(todo) in todos" v-bind:key="todo.id">
         {{ todo.text }}
         <v-btn small color="primary" class="ml-2" @click="deleteTodo(todo.id)">
           delete

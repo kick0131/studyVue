@@ -1,7 +1,16 @@
 <template>
   <div>
-          <GoogleMapLoader :mapConfig="mapConfig" :apiKey="apikey">
-            <!-- <template slot-scope="{ google, map }">
+    <GoogleMapLoader :mapConfig="mapConfig" :apiKey="apikey">
+      <!-- <template v-slot:default="slotPlops">
+        <GoogleMapMarker
+          v-for="marker in markers"
+          :key="marker.id"
+          :marker="marker"
+          :google="slotPlops.google"
+          :map="slotPlops.map"
+        />
+      </template> -->
+      <!-- <template slot-scope="{ google, map }">
             <GoogleMapMarker
               v-for="marker in markers"
               :key="marker.id"
@@ -17,7 +26,7 @@
               :map="map"
             />
             -->
-          </GoogleMapLoader>
+    </GoogleMapLoader>
   </div>
 </template>
 
@@ -40,8 +49,8 @@ export default {
       // for GoogleMap
       markers: [
         { id: "a", position: { lat: 35.68944, lng: 139.69167 } },
-        { id: "b", position: { lat: 5, lng: 99 } },
-        { id: "c", position: { lat: 6, lng: 97 } },
+        // { id: "b", position: { lat: 5, lng: 99 } },
+        // { id: "c", position: { lat: 6, lng: 97 } },
       ],
       lines: [
         {
@@ -61,23 +70,11 @@ export default {
       ],
     };
   },
-  methods: {
-    incrementCounter: function() {
-      this.counter += 1;
-    },
-    // 未使用
-    onInput: function(e) {
-      this.inputResult = e;
-    },
-    deleteTodo: function(id) {
-      this.todos = this.todos.filter((todo) => todo.id !== id);
-    },
-  },
+  methods: {},
   computed: {
     mapConfig() {
       return {
         ...mapSettings,
-        // zoom: 17,
         center: this.mapCenter,
       };
     },
@@ -93,7 +90,4 @@ export default {
 
 <style>
 /*ここにスタイルを記載 */
-.container--fluid {
-  max-width: 100%;
-}
 </style>
