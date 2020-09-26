@@ -44,7 +44,9 @@
 </template>
 
 <script>
-import Sample01 from './components/Sample01';
+import Sample01 from './components/Layout';
+// import Sample01 from './components/ToDoList';
+// import Sample01 from './components/GoogleMapSample';
 
 export default {
   name: 'App',
