@@ -1,0 +1,9 @@
+.gcloudignore
+.git
+.gitignore
+src/
+pakage.json
+README.md
+yarn.lock
+node_modules
+

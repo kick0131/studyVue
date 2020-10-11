@@ -1,0 +1,121 @@
+<template>
+  <v-container>
+    <v-btn :disabled="!selected.length > 0" color="success">表示</v-btn>
+    <v-btn :disabled="!selected.length > 0" color="warning" class="ml-5">非表示</v-btn>
+    <br />
+    <v-data-table
+      :headers="headers"
+      :items="items"
+      :options.sync="options"
+      show-select
+      v-model="selected"
+      hide-default-footer
+      class="mt-5"
+    >
+      <template v-slot:top>
+        <v-toolbar dark flat color="#008080">
+          <v-toolbar-title>アンケート一覧</v-toolbar-title>
+          <v-spacer />
+          <v-btn text icon @click="$router.push('/questionnaire/new')">
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+        </v-toolbar>
+      </template>
+      <template v-slot:item.disp="{ item }">
+        <template v-if="item.disp">表示</template>
+        <template v-else>非表示</template>
+      </template>
+      <template v-slot:item.action="{ item }">
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on }">
+            <v-btn text icon @click="$router.push('/questionnaire/' + item.id)" v-on="on">
+              <v-icon>mdi-text-box-outline</v-icon>
+            </v-btn>
+          </template>
+          <span>詳細</span>
+        </v-tooltip>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on }">
+            <span v-on="on">
+              <ConfirmDaialog title="アンケート削除" message="アンケートを削除しますか？" :ok="abort" />
+            </span>
+          </template>
+          <span>削除</span>
+        </v-tooltip>
+      </template>
+    </v-data-table>
+  </v-container>
+</template>
+
+<script>
+export default {
+  components: {
+    ConfirmDaialog: () => import("@/components/ConfirmDaialog")
+  },
+  data() {
+    return {
+      headers: [
+        {
+          text: "発信日",
+          value: "date"
+        },
+        {
+          text: "アプリ表示",
+          value: "disp"
+        },
+        {
+          text: "タイトル",
+          value: "title.ja"
+        },
+        {
+          text: "操作",
+          value: "action",
+          sortable: false
+        }
+      ],
+      items: [
+        {
+          id: "5",
+          disp: true,
+          title: { ja: "アンケート5" },
+          date: "2020/10/06 14:00:00"
+        },
+        {
+          id: "4",
+          disp: true,
+          title: { ja: "アンケート4" },
+          date: "2020/10/06 13:00:00"
+        },
+        {
+          id: "3",
+          disp: true,
+          title: { ja: "アンケート3" },
+          date: "2020/10/06 12:00:00"
+        },
+        {
+          id: "2",
+          disp: true,
+          title: { ja: "アンケート2" },
+          date: "2020/10/06 11:00:00"
+        },
+        {
+          id: "1",
+          disp: false,
+          title: { ja: "アンケート1" },
+          date: "2020/10/06 10:00:00"
+        }
+      ],
+      options: {
+        page: 1,
+        itemsPerPage: -1
+      },
+      selected: []
+    };
+  },
+  methods: {
+    abort: function() {
+      this.$router.push("/questionnaire");
+    }
+  }
+};
+</script>

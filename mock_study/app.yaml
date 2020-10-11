@@ -1,0 +1,20 @@
+runtime: nodejs12
+
+# default: F1
+instance_class: F1
+
+# default: 4d
+# default_expiration: 0s
+
+env_variables:
+  BUCKET_NAME: "example-gcs-bucket"
+
+handlers:
+- url: /
+  static_files: dist/index.html
+  upload: dist/index.html
+  secure: always
+- url: /(.*\..+)$
+  static_files: dist/\1
+  upload: dist/(.*\..+)$
+  secure: always
