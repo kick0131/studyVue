@@ -3,6 +3,7 @@
 ## Usage
 1. change into sample project directory.
     ```
+    ex)
     cd google-map
     ```
 1. download node_modules.
@@ -20,11 +21,14 @@
 
 ## Project Information
 
+### crudFirestore
+To read write Firestore sample.
+
 ### google-map
-Google Map API Sample Project
+Google Map API sample project.
 
 ### mock_study
-Simple Vuetify Sample.
+Simple Vuetify sample.
 
 ### pushReceiver
 Receive Firebase Cloud Messaging(Push notification) sample.
