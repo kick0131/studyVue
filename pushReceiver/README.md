@@ -8,6 +8,9 @@ ServerWorker様のJavaScriptファイルを用意する
   設定-全般-マイアプリ-Firebase SDK snippetの構成
 
 ## Project setup
+ServiceWorkerはバックグラウンドでPush通知を受診するために必要。
+ServiceWorkerを起動するためにローカル起動時にはdistファイルが必要。
+Push通知側はサーバ起動時後、コンソールログに出力される登録トークンを使用する。
 ```
 yarn install
 yarn build

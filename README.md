@@ -26,3 +26,6 @@ Google Map API Sample Project
 ### mock_study
 Simple Vuetify Sample.
 
+### pushReceiver
+Receive Firebase Cloud Messaging(Push notification) sample.
+
