@@ -15,7 +15,7 @@ export default {
       map: this.map,
       // icon: POINT_MARKER_ICON_CONFIG,
       icon: {
-        fillColor: "#FF0000", //塗り潰し色
+        fillColor: "#00FF00", //塗り潰し色
         fillOpacity: 0.8, //塗り潰し透過率
         // path: this.google.maps.SymbolPath.CIRCLE, //円を指定
         scale: 16, //円のサイズ

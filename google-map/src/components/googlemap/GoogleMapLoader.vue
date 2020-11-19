@@ -47,15 +47,15 @@ export default {
       this.marker = new this.google.maps.Marker({
         position: this.mapConfig.center,
         map: this.map,
-        // icon: {
-        //   fillColor: "#FF0000", //塗り潰し色
-        //   fillOpacity: 0.8, //塗り潰し透過率
-        //   path: this.google.maps.SymbolPath.CIRCLE, //円を指定
-        //   scale: 16, //円のサイズ
-        //   strokeColor: "#FF0000", //枠の色
-        //   strokeWeight: 1.0, //枠の透過率
-        // },
-        label: "99",
+        icon: {
+          fillColor: "#0FF000", //塗り潰し色
+          fillOpacity: 0.8, //塗り潰し透過率
+          // path: this.google.maps.SymbolPath.CIRCLE, //円を指定
+          // scale: 16, //円のサイズ
+          strokeColor: "#FF0000", //枠の色
+          strokeWeight: 1.0, //枠の透過率
+        },
+        label: "98",
       });
 
       // マーカー複数配置

@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import HelloWorld from "./components/Home";
+import HelloWorld from "./components/PushReceiver";
 
 export default {
   name: "App",
