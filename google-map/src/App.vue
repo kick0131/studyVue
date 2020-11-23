@@ -44,10 +44,8 @@
 </template>
 
 <script>
-import Sample01 from './components/Layout';
-// import Sample01 from './components/ToDoList';
-// import Sample01 from './components/GoogleMapSample';
-// import Sample01 from './components/HelloWorld';
+// import Sample01 from './components/Layout';
+import Sample01 from './components/helloworld/VueIfSample';
 
 export default {
   name: 'App',

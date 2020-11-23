@@ -5,7 +5,7 @@
 ### Project setup
 
 ```
-npm install
+yarn install
 ```
 
 ### [IMPORTANT] add api key file

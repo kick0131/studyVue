@@ -1,9 +1,5 @@
 ## 基本情報
 
-| 項目 | 値 |
-|---------------|----|
-| プロジェクト名 | tit-handbook-development|
-
 ---
 
 ### ビルド
@@ -14,12 +10,12 @@ yarn build
 ### デプロイ
 バージョン名  : handbook-[Web App ProjectName]
 ```
-gcloud app deploy --version handbook-mock --project tit-handbook-development --no-promote
+gcloud app deploy --version handbook-mock --project (PJ Name) --no-promote
 ```
 
 ### アクセスURL
 ```
-https://tit-handbook-development.an.r.appspot.com/
+https://(PJName).an.r.appspot.com/
 ```
 
 ### 課題

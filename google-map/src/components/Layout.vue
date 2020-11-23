@@ -15,7 +15,7 @@
       <!-- 2行目 -->
       <v-row align="center" justify="center">
         <v-col cols="auto">
-          <google-map-sample />
+          <GoogleMapSample />
         </v-col>
       </v-row>
 
