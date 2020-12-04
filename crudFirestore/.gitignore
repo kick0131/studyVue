@@ -23,5 +23,5 @@ pnpm-debug.log*
 *.sw?
 
 # My setting
-src/constants/firebaseConfig.js
+src/secrets/firebaseConfig.js
 

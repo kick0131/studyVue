@@ -1,4 +1,5 @@
 <template>
+  <!-- Vuetify,Vuexfireを使わないシンプルなfirestoreアクセス -->
   <div>
     <table style="border:1px #808080 solid" v-for="(doc, i) in docs" :key="i">
       <tr v-for="(v, k) in doc.data()" :key="k">
@@ -39,7 +40,7 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/firestore";
-import firebaseConfig from "../constants/firebaseConfig";
+import firebaseConfig from "@/secrets/firebaseConfig";
 import firestoreModules from "@/common/firestoreModules";
 
 firebase.initializeApp(firebaseConfig);
