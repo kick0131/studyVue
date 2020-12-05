@@ -33,3 +33,7 @@ Simple Vuetify sample.
 ### pushReceiver
 Receive Firebase Cloud Messaging(Push notification) sample.
 
+## Trouble shoot
+
+### Enable Admin PowerShell User
+`Set-ExecutionPolicy -ExecutionPolicy RemoteSigned`
