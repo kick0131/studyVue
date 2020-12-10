@@ -37,14 +37,7 @@
 </template>
 
 <script>
-// import firebase from 'firebase/app';
-// import 'firebase/firestore';
-// import firebaseConfig from '@/secrets/firebaseConfig';
 import firestoreModules from '@/common/firestoreModules';
-import FirestoreDb from '@/common/FirestoreDb';
-// import { firestoreAction, vuexfireMutations } from 'vuexfire';
-
-// firebase.initializeApp(firebaseConfig);
 
 export default {
   methods: {
@@ -90,7 +83,14 @@ export default {
       } else {
         // ドキュメントIDが空の場合はランダムID
         console.log('submit ELSEルート');
-        this.col.add(this.draft).catch(e => alert(e));
+        // this.col.add(this.draft).catch(e => alert(e));
+        // ★ダミーの登録データ
+        let doc = {
+          id:'abcd',
+          mail:'userA@sample.com',
+          addr:'000-111-2222',
+        };
+        this.registDb('clients',doc);
       }
     },
     singleGet() {
@@ -150,7 +150,7 @@ export default {
     // サブコレクション取得
     getSubCollection() {
       try {
-        FirestoreDb.db.collectionGroup('en')
+        this.db.collectionGroup('en')
           .get()
           .then(snapshot => {
             firestoreModules.viewdocs(snapshot);
@@ -166,11 +166,10 @@ export default {
     // draft : カラム情報
     // docs  : 現在のドキュメント管理用の変数
     return {
-      col: FirestoreDb.db.collection('clients'),
+      col: this.db.collection('clients'),
       id: '',
       draft: { ID: '', 名前: '', 携帯: '', メール: '' },
       docs: []
-      // db: firebase.firestore()
     };
   },
   // 初回表示時に現在のコレクションの状態を取得
@@ -180,7 +179,7 @@ export default {
   // onSnapshotの引数なしで初期化？
   beforeUnmount() {
     this.unsubscribe();
-    FirestoreDb.db.app.delete();
+    this.db.app.delete();
   }
 };
 </script>

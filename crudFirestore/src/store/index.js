@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import { firestoreAction, vuexfireMutations } from 'vuexfire';
-import FirestoreDb from '@/common/FirestoreDb';
+// import FirestoreDb from '@/common/FirestoreDb';
 
 export default createStore({
   state: {
@@ -12,7 +12,8 @@ export default createStore({
   },
   actions: {
     bindClients: firestoreAction(({ ref }) => {
-      return ref('clients', FirestoreDb.db.collection('clients'));
+      // return ref('clients', FirestoreDb.db.collection('clients'));
+      return ref;
     })
   },
   modules: {

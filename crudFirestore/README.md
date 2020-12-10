@@ -11,6 +11,10 @@ yarn install
 yarn serve
 ```
 
+## Description components
+- ReadWriteFb.vue is only use Firestore SDK.
+- UseVuexfire.vue is use Vuexfire.vue and mixin component FirestoreDb.vue
+
 ## References
 - vuexfire
 https://vuefire.vuejs.org/vuexfire/
