@@ -38,6 +38,7 @@
 
 <script>
 import firestoreModules from '@/common/firestoreModules';
+import { firestoreDb } from '@/common/FirestoreDb';
 
 export default {
   methods: {
@@ -150,7 +151,7 @@ export default {
     // サブコレクション取得
     getSubCollection() {
       try {
-        this.db.collectionGroup('en')
+        firestoreDb.collectionGroup('en')
           .get()
           .then(snapshot => {
             firestoreModules.viewdocs(snapshot);
@@ -166,7 +167,7 @@ export default {
     // draft : カラム情報
     // docs  : 現在のドキュメント管理用の変数
     return {
-      col: this.db.collection('clients'),
+      col: firestoreDb.collection('clients'),
       id: '',
       draft: { ID: '', 名前: '', 携帯: '', メール: '' },
       docs: []
@@ -179,7 +180,7 @@ export default {
   // onSnapshotの引数なしで初期化？
   beforeUnmount() {
     this.unsubscribe();
-    this.db.app.delete();
+    firestoreDb.app.delete();
   }
 };
 </script>

@@ -1,15 +1,7 @@
 <script>
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import firebaseConfig from '@/secrets/firebaseConfig';
+import { firestoreDb } from '@/common/FirestoreDb';
 
-firebase.initializeApp(firebaseConfig);
 export default {
-  data: function () {
-    return {
-      db: firebase.firestore()
-    };
-  },
 
   // 動作未検証
   methods: {
@@ -26,7 +18,7 @@ export default {
         error: null
       };
       var promise = new Promise(resolve => {
-        this.db
+        firestoreDb
           .collection(collection)
           .add(doc)
           .then(function (response) {
@@ -57,7 +49,7 @@ export default {
       };
       if (docId && docId != '') {
         var promise = new Promise(resolve => {
-          this.db
+          firestoreDb
             .collection(collection)
             .doc(docId)
             .set(doc)
@@ -92,7 +84,7 @@ export default {
         error: null
       };
       var promise = new Promise(resolve => {
-        this.db
+        firestoreDb
           .collection(collection)
           .doc(id)
           .get()
@@ -125,7 +117,7 @@ export default {
         error: null
       };
       var promise = new Promise(resolve => {
-        this.db
+        firestoreDb
           .collection(collection)
           .get()
           .then(function (querySnapshot) {
@@ -159,7 +151,7 @@ export default {
       };
       var promise = new Promise(resolve => {
         // deleteflagをtrueで更新
-        this.db
+        firestoreDb
           .collection(collection)
           .doc(id)
           .update({ deleteflag: true })
@@ -182,6 +174,16 @@ export default {
 	created: function(){
 		// 2回呼ばれるが何故？
 		console.log('FirestoreDb.vue created!')
+	},
+	mounted: function(){
+		console.log('FirestoreDb.vue mounted!')
+		this.$store.dispatch('bindClients')
+		console.log('dispached')
+	},
+	unmounted: function(){
+		console.log('FirestoreDb.vue unmounted!')
+		this.$store.dispatch('unbindClients')
+		console.log('dispached')
 	}
 };
 </script>
