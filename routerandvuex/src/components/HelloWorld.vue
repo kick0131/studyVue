@@ -1,8 +1,8 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <router-link to="/page1/123">Foo</router-link>
-    <router-link to="/page2">Bar</router-link>
+    <router-link to="/page1/123">Page1(Use path parameter)</router-link> | 
+    <router-link to="/page2">Page2(Not use path parameter)</router-link>
     <router-view/>
   </div>
 </template>

@@ -1,12 +1,11 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-
-import Page1 from '../views/Page1.vue'
-import Page2 from '../views/Page2.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Home from '../views/Home.vue';
+import Page1 from '../views/Page1.vue';
+import Page2 from '../views/Page2.vue';
 
 // 必須。Vue内でvue-routerを使うことを宣言
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   // ルートオブジェクトの定義
@@ -26,26 +25,41 @@ const routes = [
     path: '/about',
     name: 'About',
     // 下記の形式は非同期importと呼び、呼び出された時に生成されるのでリソースの消費を抑えられる
-    component: () => import( '../views/About.vue')
+    component: () => import('../views/About.vue')
   },
   {
     path: '/page1/:id?',
     name: 'page1',
     component: Page1,
-    props:true
+    props: true
   },
   {
     path: '/page2',
     name: 'page2',
     component: Page2
+  },
+  // 要素の入れ子
+  {
+    // 正規表現で3桁の数字のみマッチング
+    path: '/article/:id(\\d{1,3})',
+    name: 'Article',
+    component: () => import('../views/Article.vue'),
+    props: true,
+    children: [
+      {
+        path: 'page/:page_num',
+        name: 'ArticlePage',
+        component: () => import('../components/ArticlePage.vue'),
+        props: true
+      }
+    ]
   }
-
-]
+];
 
 // 主なルータオプション
 // history              履歴情報
 // routes               ルーティング情報
-// linkActiveClass      
+// linkActiveClass
 // linkExactActiveClass 完全一致
 // sensitive            大文字小文字を区別する
 const myrouter = new VueRouter({
@@ -58,7 +72,7 @@ const myrouter = new VueRouter({
   base: process.env.BASE_URL,
   // routes:routesの省略構文、プロパティと同じ名称の変数を使うことができる
   routes
-})
+});
 
 // 生成したインスタンスは以下が使用可能
 // ■ routerオブジェクト
@@ -71,5 +85,5 @@ const myrouter = new VueRouter({
 // this.$route.name     パス名を返す
 // this.$route.params   パスパラメータを返す(/path/001)
 // this.$route.query    クエリパラメータを返す(/path?id=001)
-// this.$route.fullPath クエリパラメータ含む全てのURLを返す            
-export default myrouter
+// this.$route.fullPath クエリパラメータ含む全てのURLを返す
+export default myrouter;

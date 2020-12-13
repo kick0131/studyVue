@@ -3,11 +3,12 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
+      <router-link to="/article/123">Article</router-link> |
       <router-link to="/page1">P1</router-link> |
       <router-link to="/page2">P2</router-link>
     </div>
     <!-- router-linkで提示したコンポーネントの表示場所 -->
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
