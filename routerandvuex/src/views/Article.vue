@@ -1,5 +1,6 @@
 <template>
   <div class="article">
+    <h1>Children page usage sample</h1>
     <span>Article Page：{{ checkId(id) }}</span>
     <div>
       ［<router-link v-bind:to="`/article/${id}/page/1`"> 1 </router-link>］

@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
 import App from './App.vue'
 
 // ディレクトリ指定でindex.jsが参照される
@@ -8,10 +7,6 @@ import router from './router'
 import store from './store'
 
 Vue.config.productionTip = false
-
-// プラグインの追加
-Vue.use(Vuex)
-
 
 // 4. root となるインスタンスを作成してマウントします
 // アプリケーション全体がルーターを認知できるように、

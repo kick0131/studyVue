@@ -1,17 +1,22 @@
 # routerandvuex
 
 ## **App.vue** Structure
-| 1 | 2 | 3 |
-|:----|:----|:----|
-| Home.vue || |
-| About.vue |  | |
-| Article.vue |  | |
-| | ArticleSub.vue | |
-|  |  | ArticlePage.vue |
-| Page1.vue |  |  |
-| Page2.vue |  |  |
+| root | 2階層 | 3階層 | 説明 |
+|:----|:----|:----|:----|
+| Home.vue | | | |
+| About.vue |  | | |
+| Article.vue |  | | Router練習(親要素) |
+| | ArticleSub.vue | | Router練習(子要素) |
+|  |  | ArticlePage.vue | Router練習(孫要素) |
+| Page1.vue |  |  | Router練習(Homeからの遷移先1) |
+| Page2.vue |  |  | Router練習(Homeからの遷移先2) |
+| Counter.vue |  |  | Vuexを使ったカウンタ |
 
 ---
+
+### Vuex構成
+index.jsから分割されたVuexモジュールをインポート
+modules内にVuex定義を記載し、modules/index.jsでまとめてエクスポート
 
 ### 環境について
 vue 2.x系
