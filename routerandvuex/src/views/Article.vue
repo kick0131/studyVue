@@ -18,11 +18,11 @@ export default {
     // vue-routerで受け取ったパスパラメータの存在チェック
     checkId: arg => {
       if (arg === undefined) {
-        return 'undefined path parameter.';
+        return 'undefined path parameter.'
       } else {
-        return arg;
+        return arg
       }
-    }
-  }
-};
+    },
+  },
+}
 </script>

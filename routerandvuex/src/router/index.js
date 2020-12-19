@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Page1 from '../views/Page1.vue';
 import Page2 from '../views/Page2.vue';
+import Counter from '../views/Counter.vue';
 
 // 必須。Vue内でvue-routerを使うことを宣言
 Vue.use(VueRouter);
@@ -53,7 +54,12 @@ const routes = [
         props: true
       }
     ]
-  }
+  },
+  {
+    path: '/counter',
+    name: 'counter',
+    component: Counter
+  },
 ];
 
 // 主なルータオプション

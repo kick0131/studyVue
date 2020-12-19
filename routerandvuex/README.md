@@ -19,6 +19,7 @@ vue 2.x系
 ### 準備
 ```
 yarn add vue-router
+vue add vuex
 ```
 
 ### 使い方
@@ -32,6 +33,10 @@ yarn serve
 ```
 ★何か書く
 ```
+- Prettierの設定
+.prettierrcファイルを生成し、プロジェクトディレクトリ直下に配置
+項目は以下URL参照
+`http://json.schemastore.org/prettierrc`
 
 
 ## 公式
