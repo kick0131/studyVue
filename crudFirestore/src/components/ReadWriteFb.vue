@@ -39,7 +39,7 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/firestore";
-import firebaseConfig from "../constants/firebaseConfig";
+import firebaseConfig from "@/constants/firebaseConfig";
 import firestoreModules from "@/common/firestoreModules";
 
 firebase.initializeApp(firebaseConfig);
