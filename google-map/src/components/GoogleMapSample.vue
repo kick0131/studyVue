@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import GoogleMapLoader from "./googlemap/GoogleMapLoader";
+import GoogleMapLoader from "@/components/googlemap/GoogleMapLoader";
 // import GoogleMapMarker from "./googlemap/GoogleMapMarker";
 // import GoogleMapLine from "./googlemap/GoogleMapLine";
 import mapSettings from "@/constants/mapSettings";
