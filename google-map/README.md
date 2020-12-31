@@ -33,7 +33,27 @@ yarn add axios
 ```
 
 ---
+## deploy Firebase initialize
 
+```
+firebase login
+```
+
+---
+## local hosting
+
+```
+firebase serve
+```
+
+---
+## deploy hosting
+
+```
+firebase deploy
+```
+
+---
 ### color
 https://vuetifyjs.com/en/styles/colors/
 
