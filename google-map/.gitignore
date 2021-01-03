@@ -2,6 +2,7 @@ dist
 node_modules
 src/constants/apikey.js
 package-lock.json
+firebase-debug.log
 
 .firebase
 .firebaserc

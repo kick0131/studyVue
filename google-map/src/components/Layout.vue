@@ -16,7 +16,8 @@
     <v-row align="center" justify="center" class="cyan lighten-4">
       <!-- <span>point:{{ counter }}</span>
       <v-spacer></v-spacer> -->
-      <v-btn small color="primary" v-on:click="traceAddr">開始</v-btn>
+      <v-btn small color="primary" :disabled="btnEnable == false" v-on:click="traceAddr">開始</v-btn>
+      <!-- <v-btn small color="primary" v-on:click="traceAddr">開始</v-btn> -->
     </v-row>
   </v-container>
 </template>
@@ -27,12 +28,19 @@ import TraceMapAPI from '@/components/googlemap/TraceMapAPI';
 import AddMarkerAPI from '@/components/googlemap/AddMarkerAPI';
 import { mapState } from 'vuex';
 
+// インターバル初期値
+const INIT_INTERVAL_COUNT = 0;
+// 最大呼び出し回数
+const MAX_INTERVAL_COUNT = 15;
+// 定期処理の実行間隔(ms)
+const INTERVAL_TIME = 2000;
+
 export default {
   data: function() {
     return {
-      title: '10秒間歴史に足跡を残すボタン',
-      counter: 0,
-      inputResult: ''
+      title: '30秒間軌跡をプロットする',
+      counter: INIT_INTERVAL_COUNT,
+      btnEnable: true
     };
   },
   computed: {
@@ -51,29 +59,29 @@ export default {
     },
     // 時間をおいて座標取得を複数回呼び出す
     traceAddr: function() {
-      // 最大呼び出し回数
-      const MAX_INTERVAL_COUNT = 5;
-      // 定期処理の実行間隔(ms)
-      const INTERVAL_TIME = 2000;
+      // 初期化
+      this.counter = INIT_INTERVAL_COUNT;
+      this.btnEnable = false;
 
       // インターバルを引数付きメソッドで呼びたい場合は無名関数で定義する
       // 引数:CreateInterval戻り値（停止で必要）
-      const hoge = id => {
+      const intervalAction = id => {
         console.log('this.mycounter:' + this.mycounter + ' id:' + id);
 
         // インターバル処理の停止
         if (this.mycounter >= MAX_INTERVAL_COUNT) {
           console.log('== STOP');
           clearInterval(id);
+          this.btnEnable = true;
         }
         this.incrementCounter();
-        this.getLocation();
+        this.pointOnGoogleMap();
       };
 
       // 第1引数：実行対象の関数
       // 第2引数：実行間隔(ms)
       var id = setInterval(function() {
-        hoge(id);
+        intervalAction(id);
       }, INTERVAL_TIME);
     },
     // カウンタ
@@ -81,7 +89,7 @@ export default {
       this.counter += 1;
     },
     // Geolocation APIを使った座標情報取得
-    getLocation: function() {
+    pointOnGoogleMap: function() {
       // Geolocation APIに対応している
       if (navigator.geolocation) {
         // 現在位置を取得できる場合の処理
@@ -104,6 +112,9 @@ export default {
       else {
         // 現在位置を取得できない場合の処理
         alert('あなたの端末では、現在位置を取得できません。');
+
+        // カウントを終了させる
+        this.mycounter = MAX_INTERVAL_COUNT;
       }
     },
 
@@ -131,6 +142,9 @@ export default {
 
       // エラーコードに合わせたエラー内容をアラート表示
       alert(errorMessage[error.code]);
+
+      // カウントを終了させる
+      this.mycounter = MAX_INTERVAL_COUNT;
     }
   },
   components: {
