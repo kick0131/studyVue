@@ -46,6 +46,7 @@ export default {
     return {
       // for GoogleMap
       markers: [
+        { id: '東京駅', position: { lat: 35.6812405, lng: 139.7649308 } },
         { id: '所沢駅', position: { lat: 35.7866216, lng: 139.4710306 } },
         { id: '新宿', position: { lat: 35.68944, lng: 139.69167 } }
         // { id: "b", position: { lat: 5, lng: 99 } },

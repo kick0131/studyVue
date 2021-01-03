@@ -14,14 +14,9 @@
 
     <!-- 3行目 アプリ（User Action）-->
     <v-row align="center" justify="center" class="cyan lighten-4">
-      <!-- <v-text-field @change="onInput($event)" placeholder="input"/> -->
-      <v-text-field v-model="inputResult" placeholder="未使用" />
-      <!-- <v-spacer></v-spacer>
-      {{ inputResult }} -->
-      <v-spacer></v-spacer>
-      <span>point:{{ counter }}</span>
-      <v-spacer></v-spacer>
-      <v-btn small color="primary" v-on:click="panto">開始</v-btn>
+      <!-- <span>point:{{ counter }}</span>
+      <v-spacer></v-spacer> -->
+      <v-btn small color="primary" v-on:click="traceAddr">開始</v-btn>
     </v-row>
   </v-container>
 </template>
@@ -29,12 +24,13 @@
 <script>
 import GoogleMapSample from './GoogleMapSample';
 import TraceMapAPI from '@/components/googlemap/TraceMapAPI';
+import AddMarkerAPI from '@/components/googlemap/AddMarkerAPI';
 import { mapState } from 'vuex';
 
 export default {
   data: function() {
     return {
-      title: '10秒間だけ足跡を残す',
+      title: '10秒間歴史に足跡を残すボタン',
       counter: 0,
       inputResult: ''
     };
@@ -46,18 +42,19 @@ export default {
     ...mapState(['googlemap', 'mapapi'])
   },
   methods: {
-    // ★ToDo GoogleMapの指定した座標に移動
+    // GoogleMapの指定した座標に移動してプロットするサンプル
     panto: function() {
-      // console.log('[Layout]:' + GoogleMapSample.);
-      console.log(this.googlemap);
-      TraceMapAPI.PantoMap(this.googlemap, this.mapapi);
+      var latitude = 35.6916642;
+      var longitude = 139.6969475;
+      TraceMapAPI.PantoMap(this.googlemap, this.mapapi, latitude, longitude);
+      AddMarkerAPI.AddPointMarker(this.googlemap, this.mapapi, latitude, longitude);
     },
     // 時間をおいて座標取得を複数回呼び出す
     traceAddr: function() {
       // 最大呼び出し回数
-      const MAX_INTERVAL_COUNT = 3;
+      const MAX_INTERVAL_COUNT = 5;
       // 定期処理の実行間隔(ms)
-      const INTERVAL_TIME = 3000;
+      const INTERVAL_TIME = 2000;
 
       // インターバルを引数付きメソッドで呼びたい場合は無名関数で定義する
       // 引数:CreateInterval戻り値（停止で必要）
@@ -114,7 +111,13 @@ export default {
     successFunc: function(position) {
       var msg = 'lat:' + position.coords.latitude + ' lon:' + position.coords.longitude;
       // 緯度経度をアラート表示
-      alert(msg);
+      // alert(msg);
+      console.log(msg);
+
+      // 現在地を地図の中心に補正
+      TraceMapAPI.PantoMap(this.googlemap, this.mapapi, position.coords.latitude, position.coords.longitude);
+      // 軌跡のポイント
+      AddMarkerAPI.AddPointMarker(this.googlemap, this.mapapi, position.coords.latitude, position.coords.longitude);
     },
     // 失敗した時の関数
     errorFunc: function(error) {
