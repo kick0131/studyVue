@@ -18,7 +18,7 @@ export default Object.freeze({
 ```
 
 ### Compiles and hot-reloads for development
-
+Use https protocol(see package.json)
 ```
 yarn serve
 ```
