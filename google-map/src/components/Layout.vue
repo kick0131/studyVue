@@ -28,6 +28,9 @@
 
 <script>
 import GoogleMapSample from './GoogleMapSample';
+import TraceMapAPI from '@/components/googlemap/TraceMapAPI';
+import { mapState } from 'vuex';
+
 export default {
   data: function() {
     return {
@@ -39,13 +42,15 @@ export default {
   computed: {
     mycounter: function() {
       return this.counter;
-    }
+    },
+    ...mapState(['googlemap', 'mapapi'])
   },
   methods: {
     // ★ToDo GoogleMapの指定した座標に移動
     panto: function() {
       // console.log('[Layout]:' + GoogleMapSample.);
-      console.log(GoogleMapSample);
+      console.log(this.googlemap);
+      TraceMapAPI.PantoMap(this.googlemap, this.mapapi);
     },
     // 時間をおいて座標取得を複数回呼び出す
     traceAddr: function() {

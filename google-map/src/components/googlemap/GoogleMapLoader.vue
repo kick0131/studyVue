@@ -2,7 +2,6 @@
   <div>
     <div class="google-map" ref="googleMap"></div>
     <!-- <template v-if="Boolean(this.google) && Boolean(this.map)"> -->
-    <slot :google="google" :map="map" />
     <!-- </template> -->
   </div>
 </template>
@@ -10,7 +9,7 @@
 <script>
 import GoogleMapsApiLoader from 'google-maps-api-loader';
 import AddMarkerAPI from '@/components/googlemap/AddMarkerAPI';
-// import TraceMapAPI from '@/components/googlemap/TraceMapAPI';
+import { mapState } from 'vuex';
 
 export default {
   props: {
@@ -19,26 +18,26 @@ export default {
     // marker: { type: Object, required: false },
   },
   data: function() {
-    return {
-      google: null,
-      map: null
-    };
+    return {};
   },
   mounted: async function() {
+    // Create Google Map API
     const googleMapApi = await GoogleMapsApiLoader({
       apiKey: this.apiKey
     });
-    this.google = googleMapApi;
 
     // Create Map
-    this.map = new this.google.maps.Map(this.$refs.googleMap, this.mapConfig);
+    var map = new googleMapApi.maps.Map(this.$refs.googleMap, this.mapConfig);
+    this.$store.commit('setMap', map);
+    this.$store.commit('setMapApi', googleMapApi);
 
     // Add Marker
-    AddMarkerAPI.AddSimpleMarker(this.map, this.google);
+    AddMarkerAPI.AddSimpleMarker(this.googlemap, this.mapapi);
     // AddMarkerAPI.AddUserIconMarker(this.map, this.google);
-    
   },
-  methods: {
+  methods: {},
+  computed: {
+    ...mapState(['googlemap', 'mapapi'])
   }
 };
 </script>

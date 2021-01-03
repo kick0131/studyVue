@@ -82,7 +82,8 @@ export default {
     },
     apikey() {
       return Secret.API_KEY;
-    },
+    }
+  }
 };
 </script>
 
