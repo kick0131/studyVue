@@ -33,6 +33,10 @@ Simple Vuetify sample.
 ### pushReceiver
 Receive Firebase Cloud Messaging(Push notification) sample.
 
+## Configure
+### Pretter
+see `.prettierrc.js`
+
 ## Trouble shoot
 
 ### Enable Admin PowerShell User

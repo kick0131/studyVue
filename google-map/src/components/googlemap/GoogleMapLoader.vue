@@ -9,7 +9,8 @@
 
 <script>
 import GoogleMapsApiLoader from 'google-maps-api-loader';
-import AddMarker from '@/components/googlemap/AddMarker';
+import AddMarkerAPI from '@/components/googlemap/AddMarkerAPI';
+// import TraceMapAPI from '@/components/googlemap/TraceMapAPI';
 
 export default {
   props: {
@@ -28,14 +29,13 @@ export default {
       apiKey: this.apiKey
     });
     this.google = googleMapApi;
-    // this.initializeMap();
 
     // Create Map
     this.map = new this.google.maps.Map(this.$refs.googleMap, this.mapConfig);
 
     // Add Marker
-    AddMarker.AddSimpleMarker(this.map, this.google);
-    // AddMarker.AddUserIconMarker(this.map, this.google);
+    AddMarkerAPI.AddSimpleMarker(this.map, this.google);
+    // AddMarkerAPI.AddUserIconMarker(this.map, this.google);
     
   },
   methods: {
@@ -45,7 +45,7 @@ export default {
 
 <style lang="scss" scoped>
 .google-map {
-  width: 60vw;
+  width: 90vw;
   height: 50vh;
 }
 </style>

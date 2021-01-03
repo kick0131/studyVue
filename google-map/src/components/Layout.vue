@@ -1,7 +1,7 @@
 <template>
   <v-container class="grey lighten-5">
     <!-- 1行目 タイトル -->
-    <v-row align="center" justify="center" class="purple lighten-4 mt-5">
+    <v-row align="center" justify="center" class="cyan lighten-4 mt-1">
       <p>{{ title }}</p>
     </v-row>
 
@@ -15,13 +15,13 @@
     <!-- 3行目 アプリ（User Action）-->
     <v-row align="center" justify="center" class="cyan lighten-4">
       <!-- <v-text-field @change="onInput($event)" placeholder="input"/> -->
-      <v-text-field v-model="inputResult" placeholder="input" />
+      <v-text-field v-model="inputResult" placeholder="未使用" />
+      <!-- <v-spacer></v-spacer>
+      {{ inputResult }} -->
       <v-spacer></v-spacer>
-      {{ inputResult }}
+      <span>point:{{ counter }}</span>
       <v-spacer></v-spacer>
-      <span>{{ counter }}</span>
-      <v-spacer></v-spacer>
-      <v-btn small color="primary" v-on:click="incrementCounter">ボタンA</v-btn>
+      <v-btn small color="primary" v-on:click="panto">開始</v-btn>
     </v-row>
   </v-container>
 </template>
@@ -31,17 +31,59 @@ import GoogleMapSample from './GoogleMapSample';
 export default {
   data: function() {
     return {
-      title: 'GoogleMap Sample',
+      title: '10秒間だけ足跡を残す',
       counter: 0,
       inputResult: ''
     };
   },
+  computed: {
+    mycounter: function() {
+      return this.counter;
+    }
+  },
   methods: {
+    // ★ToDo GoogleMapの指定した座標に移動
+    panto: function() {
+      // console.log('[Layout]:' + GoogleMapSample.);
+      console.log(GoogleMapSample);
+    },
+    // 時間をおいて座標取得を複数回呼び出す
+    traceAddr: function() {
+      // 最大呼び出し回数
+      const MAX_INTERVAL_COUNT = 3;
+      // 定期処理の実行間隔(ms)
+      const INTERVAL_TIME = 3000;
+
+      // インターバルを引数付きメソッドで呼びたい場合は無名関数で定義する
+      // 引数:CreateInterval戻り値（停止で必要）
+      const hoge = id => {
+        console.log('this.mycounter:' + this.mycounter + ' id:' + id);
+
+        // インターバル処理の停止
+        if (this.mycounter >= MAX_INTERVAL_COUNT) {
+          console.log('== STOP');
+          clearInterval(id);
+        }
+        this.incrementCounter();
+        this.getLocation();
+      };
+
+      // 第1引数：実行対象の関数
+      // 第2引数：実行間隔(ms)
+      var id = setInterval(function() {
+        hoge(id);
+      }, INTERVAL_TIME);
+    },
+    // カウンタ
     incrementCounter: function() {
+      this.counter += 1;
+    },
+    // Geolocation APIを使った座標情報取得
+    getLocation: function() {
       // Geolocation APIに対応している
       if (navigator.geolocation) {
         // 現在位置を取得できる場合の処理
-        alert('あなたの端末では、現在位置を取得することができます。');
+        // alert('あなたの端末では、現在位置を取得することができます。');
 
         // オプション・オブジェクト
         // enableHighAccuracy 詳細な位置情報の取得
@@ -53,11 +95,7 @@ export default {
           maximumAge: 5000
         };
         // 現在位置を取得する
-        navigator.geolocation.getCurrentPosition(
-          this.successFunc,
-          this.errorFunc,
-          optionObj
-        );
+        navigator.geolocation.getCurrentPosition(this.successFunc, this.errorFunc, optionObj);
       }
 
       // Geolocation APIに対応していない
@@ -65,13 +103,11 @@ export default {
         // 現在位置を取得できない場合の処理
         alert('あなたの端末では、現在位置を取得できません。');
       }
-      this.counter += 1;
     },
 
     // 成功した時の関数
     successFunc: function(position) {
-      var msg =
-        'lat:' + position.coords.latitude + ' lon:' + position.coords.longitude;
+      var msg = 'lat:' + position.coords.latitude + ' lon:' + position.coords.longitude;
       // 緯度経度をアラート表示
       alert(msg);
     },
@@ -90,7 +126,7 @@ export default {
     }
   },
   components: {
-    GoogleMapSample,
+    GoogleMapSample
   }
 };
 </script>
