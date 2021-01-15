@@ -22,16 +22,25 @@
 ## Project Information
 
 ### crudFirestore
-To read write Firestore sample.
+Firestore access sample.
 
 ### google-map
-Google Map API sample project.
+Use Google Map API.
 
 ### mock_study
-Simple Vuetify sample.
+Simple Vuetify SPA page sample.
 
 ### pushReceiver
-Receive Firebase Cloud Messaging(Push notification) sample.
+Receive Firebase Cloud Messaging(Push notification).
+
+### routerandvuex
+Learn vue-router and vuex libraly move.
+
+## start project
+### create project
+```
+vue create (projectname)
+```
 
 ## Trouble shoot
 
