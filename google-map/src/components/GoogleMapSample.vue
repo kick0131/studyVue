@@ -1,7 +1,6 @@
 <template>
-  <div>
-    <GoogleMapLoader :mapConfig="mapConfig" :apiKey="apikey">
-      <!-- <template v-slot:default="slotPlops">
+  <GoogleMapLoader :mapConfig="mapConfig" :apiKey="apikey">
+    <!-- <template v-slot:default="slotPlops">
         <GoogleMapMarker
           v-for="marker in markers"
           :key="marker.id"
@@ -10,7 +9,7 @@
           :map="slotPlops.map"
         />
       </template> -->
-      <!-- <template slot-scope="{ google, map }">
+    <!-- <template slot-scope="{ google, map }">
             <GoogleMapMarker
               v-for="marker in markers"
               :key="marker.id"
@@ -26,20 +25,19 @@
               :map="map"
             />
             -->
-    </GoogleMapLoader>
-  </div>
+  </GoogleMapLoader>
 </template>
 
 <script>
-import GoogleMapLoader from "./googlemap/GoogleMapLoader";
+import GoogleMapLoader from '@/components/googlemap/GoogleMapLoader';
 // import GoogleMapMarker from "./googlemap/GoogleMapMarker";
 // import GoogleMapLine from "./googlemap/GoogleMapLine";
-import mapSettings from "@/constants/mapSettings";
-import Secret from "@/constants/apikey";
+import mapSettings from '@/constants/mapSettings';
+import Secret from '@/constants/apikey';
 
 export default {
   components: {
-    GoogleMapLoader,
+    GoogleMapLoader
     // GoogleMapMarker,
     // GoogleMapLine,
   },
@@ -48,26 +46,28 @@ export default {
     return {
       // for GoogleMap
       markers: [
-        { id: "a", position: { lat: 35.68944, lng: 139.69167 } },
+        { id: '東京駅', position: { lat: 35.6812405, lng: 139.7649308 } },
+        { id: '所沢駅', position: { lat: 35.7866216, lng: 139.4710306 } },
+        { id: '新宿', position: { lat: 35.68944, lng: 139.69167 } }
         // { id: "b", position: { lat: 5, lng: 99 } },
         // { id: "c", position: { lat: 6, lng: 97 } },
       ],
       lines: [
         {
-          id: "1",
+          id: '1',
           path: [
             { lat: 3, lng: 101 },
-            { lat: 5, lng: 99 },
-          ],
+            { lat: 5, lng: 99 }
+          ]
         },
         {
-          id: "2",
+          id: '2',
           path: [
             { lat: 5, lng: 99 },
-            { lat: 6, lng: 97 },
-          ],
-        },
-      ],
+            { lat: 6, lng: 97 }
+          ]
+        }
+      ]
     };
   },
   methods: {},
@@ -75,7 +75,7 @@ export default {
     mapConfig() {
       return {
         ...mapSettings,
-        center: this.mapCenter,
+        center: this.mapCenter
       };
     },
     mapCenter() {
@@ -83,8 +83,8 @@ export default {
     },
     apikey() {
       return Secret.API_KEY;
-    },
-  },
+    }
+  }
 };
 </script>
 

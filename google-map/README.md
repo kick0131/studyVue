@@ -1,7 +1,7 @@
 # GoogleMapSample
 
 ---
-
+# Local Serve
 ### Project setup
 
 ```
@@ -18,9 +18,9 @@ export default Object.freeze({
 ```
 
 ### Compiles and hot-reloads for development
-
+Use https protocol(see package.json)
 ```
-npm run serve
+yarn serve
 ```
 
 ---
@@ -33,7 +33,30 @@ yarn add axios
 ```
 
 ---
+# Firebase
+## Firebase initialize
 
+```
+firebase login
+```
+
+---
+## local hosting
+
+```
+firebase serve
+```
+
+---
+## deploy hosting
+
+```
+yarn build
+firebase deploy
+```
+
+---
+# Another
 ### color
 https://vuetifyjs.com/en/styles/colors/
 

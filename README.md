@@ -42,6 +42,10 @@ Learn vue-router and vuex libraly move.
 vue create (projectname)
 ```
 
+## Configure
+### Pretter
+see `.prettierrc.js`
+
 ## Trouble shoot
 
 ### Enable Admin PowerShell User
