@@ -16,13 +16,9 @@ yarn install
 yarn build
 yarn serve
 ```
+### Add libralies
+トピックの登録にFirebase Admin SDKが必要だが、サーバサイドでのみ利用可能なので以下は禁止(NG)
+```
+yarn add firebase-admin
+```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Lints and fixes files
-```
-yarn lint
-```

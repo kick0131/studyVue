@@ -2,12 +2,7 @@
   <v-container>
     <v-row class="text-center">
       <v-col cols="12">
-        <v-img
-          :src="require('../assets/logo.svg')"
-          class="my-3"
-          contain
-          height="50"
-        />
+        <v-img :src="require('../assets/logo.svg')" class="my-3" contain height="50" />
       </v-col>
 
       <v-col class="mb-4">
@@ -26,18 +21,21 @@
 </template>
 
 <script>
-import firebase from "firebase/app";
-import "firebase/messaging";
-import firebaseConfig from "../constants/firebaseConfig";
-import secrets from "../constants/secrets";
+import firebase from 'firebase/app';
+import 'firebase/messaging';
+import firebaseConfig from '../constants/firebaseConfig';
+import secrets from '../constants/secrets';
 
 firebase.initializeApp(firebaseConfig);
 
 // create FCM service
 const messaging = firebase.messaging();
 
+// subscribe token
+var subscribeToken = [];
+
 export default {
-  name: "Home",
+  name: 'Home',
   props: {
     msg: String
   },
@@ -46,8 +44,7 @@ export default {
       receiveMsg: [
         {
           id: this.recvKey,
-          message:
-            "ToDo:ここに通知メッセージを表示したい（現在はコンソールログ）"
+          message: 'ToDo:ここに通知メッセージを表示したい（現在はコンソールログ）'
         }
       ],
       recvKey: 0
@@ -56,6 +53,8 @@ export default {
   methods: {
     // 調査中、onMessage()に割り当てられない
     updateData: function(adddata) {
+      // カードにメッセージを追加
+      this.recvKey += 1;
       this.receiveMsg.push({
         id: this.recvKey,
         message: adddata
@@ -63,13 +62,8 @@ export default {
     },
     // お試しボタン：自由にお使いください
     pushBtn: function() {
-      console.log("Button Clicked recvKey:" + this.recvKey);
-      this.recvKey += 1;
-
-      this.receiveMsg.push({
-        id: this.recvKey,
-        message: "sample " + String(this.recvKey)
-      });
+      console.log('Button Clicked recvKey:' + this.recvKey);
+      this.updateData('ABCDE');
     }
   },
   // メイン処理 登録トークンを発行し、Push通知受信時の動作を定義する
@@ -78,26 +72,27 @@ export default {
     messaging.usePublicVapidKey(secrets.VAPID);
     Notification.requestPermission()
       .then(permission => {
-        console.log("Have permission ", permission);
+        console.log('Have permission ', permission);
         // Get token and regist FCM
         return messaging.getToken();
       })
       .then(currentToken => {
         if (currentToken) {
-          console.log("Get token is : ", currentToken);
+          console.log('Get token is : ', currentToken);
+          subscribeToken = currentToken;
         } else {
-          console.log("No Instance ID token available");
+          console.log('No Instance ID token available');
         }
       })
       .catch(err => {
-        console.log("Error Occured ", err);
+        console.log('Error Occured ', err);
       });
 
     // forground receive message
     messaging.onMessage(payload => {
       // this.recvKey += 1;
-      console.log("[FG]Message received : ", payload);
-      let data = payload.notification.title + " " + payload.notification.body;
+      console.log('[FG]Message received : ', payload);
+      let data = payload.notification.title + ' ' + payload.notification.body;
       console.log(data);
 
       // 【調査中】undefined
@@ -108,6 +103,14 @@ export default {
     // messaging.setBackgroundMessageHandler(payload => {
     //   console.log("[BG]Message received : ", payload);
     // });
+
+    // トピックの登録
+    // this.subscribeTopic(subscribeToken);
+  },
+  // 終了処理 トピックの解除
+  destroyed: () => {
+    console.log('erase Topic start');
+    this.unsubscribeTopic(subscribeToken);
   }
 };
 </script>
