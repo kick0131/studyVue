@@ -36,10 +36,19 @@ Receive Firebase Cloud Messaging(Push notification).
 ### routerandvuex
 Learn vue-router and vuex libraly move.
 
-## start project
+## commands
 ### create project
 ```
 vue create (projectname)
+```
+### formatter
+***for Mac***
+```
+Shift + Option + F
+```
+***for Win***
+```
+Shift + Alt + F
 ```
 
 ## Configure
