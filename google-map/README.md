@@ -18,10 +18,14 @@ export default Object.freeze({
 ```
 
 ### Compiles and hot-reloads for development
-Use https protocol(see package.json)
+Run with https option(--https), write at package.json.
 ```
 yarn serve
 ```
+App running at:
+- Local:   https://localhost:8080/ <- Not use
+- Network: https://192.168.0.X:8080/ ★ <- Use this
+
 
 ---
 ## install module

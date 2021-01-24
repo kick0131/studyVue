@@ -15,7 +15,6 @@ export default {
   props: {
     mapConfig: { type: Object, required: true },
     apiKey: { type: String, required: true }
-    // marker: { type: Object, required: false },
   },
   data: function() {
     return {};
@@ -32,7 +31,11 @@ export default {
     this.$store.commit('setMapApi', googleMapApi);
 
     // Add Marker
-    AddMarkerAPI.AddSimpleMarker(this.googlemap, this.mapapi);
+    var locations = [
+      this.$define.POSITION_TOKYOMODEGAKUEN,
+      this.$define.POSITION_SHINJUKUCHUOUKOUEN,
+    ];
+    AddMarkerAPI.AddSimpleMarker(this.googlemap, this.mapapi, locations);
     // AddMarkerAPI.AddUserIconMarker(this.map, this.google);
   },
   methods: {},

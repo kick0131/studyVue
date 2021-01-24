@@ -6,7 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     googlemap: null,
-    mapapi: null
+    mapapi: null,
+    appbarname: null,
   },
   mutations: {
     setMap(state, map) {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
     },
     setMapApi(state, api) {
       state.mapapi = api;
+    },
+    setAppBarName(state, name) {
+      state.appbarname = name;
     }
   },
   actions: {},

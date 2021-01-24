@@ -1,15 +1,13 @@
 export default {
   // Standard Google Map Marker
-  AddSimpleMarker(myMap, googlemapapi) {
-    // Marker location
-    var location = [
-      { id: '東京モード学園', position: { lat: 35.6916642, lng: 139.6969475 } },
-      { id: '新宿中央公園', position: { lat: 35.6901589, lng: 139.6902909 } }
-    ];
-    console.log('[DEBUG]== location == : ' + JSON.stringify(location[0].id));
+  AddSimpleMarker(myMap, googlemapapi, locations) {
+    if (!locations.length) {
+      throw new Error('[AddSimpleMarker] arg locations is empty')
+    } 
+    console.log('[DEBUG]== location == : ' + JSON.stringify(locations[0].id));
 
     // Add Marker to Map
-    location.forEach((item, index) => {
+    locations.forEach((item, index) => {
       console.log('[DEBUG]position ' + item.id);
       new googlemapapi.maps.Marker({
         position: item.position,
@@ -19,9 +17,9 @@ export default {
     });
   },
   // アイコンを使ったマーカーの作成
-  AddUserIconMarker(myMap, googlemapapi) {
+  AddUserIconMarker(myMap, googlemapapi, latitude, longitude) {
     this.marker = new googlemapapi.maps.Marker({
-      position: { lat: 35.68944, lng: 139.69167 },
+      position: { lat: latitude, lng: longitude },
       clickable: true,
       map: myMap,
       icon: 'pin_red.png',
@@ -44,9 +42,9 @@ export default {
     });
   },
   // SVGを使った方法
-  AddUserIconMarker2(myMap, googlemapapi) {
+  AddUserIconMarker2(myMap, googlemapapi, latitude, longitude) {
     this.marker = new googlemapapi.maps.Marker({
-      position: { lat: 35.68944, lng: 139.69167 },
+      position: { lat: latitude, lng: longitude },
       clickable: true,
       map: myMap,
       icon: {
