@@ -1,9 +1,9 @@
 # crudFirestore
 To read write firestore access.
 
-## Prepaire
+## Prepare
 - copy src/secrets/firebaseConfig copy.js to firebaseConfig.js
-- fix firebaseConfig.js (write Firebase parameter)
+- fix firebaseConfig.js to access firebase "MyApp" setting.
 
 ## Let's get started
 ```
