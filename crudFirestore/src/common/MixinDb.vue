@@ -171,19 +171,5 @@ export default {
       return promise;
     }
 	},
-	created: function(){
-		// 2回呼ばれるが何故？
-		console.log('FirestoreDb.vue created!')
-	},
-	mounted: function(){
-		console.log('FirestoreDb.vue mounted!')
-		this.$store.dispatch('bindClients')
-		console.log('dispached')
-	},
-	unmounted: function(){
-		console.log('FirestoreDb.vue unmounted!')
-		this.$store.dispatch('unbindClients')
-		console.log('dispached')
-	}
 };
 </script>

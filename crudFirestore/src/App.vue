@@ -1,10 +1,11 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-  <SampleView msg="Welcome to Your Vue.js App"/>
+  <div>
+    <SampleView />
+  </div>
 </template>
 
 <script>
-import SampleView from './components/UseVuexfire.vue'
+import SampleView from './components/UseVuexfire.vue';
 // import SampleView from './components/ReadWriteFb.vue'
 
 export default {
@@ -12,7 +13,7 @@ export default {
   components: {
     SampleView
   }
-}
+};
 </script>
 
 <style>
