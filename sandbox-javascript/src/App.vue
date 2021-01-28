@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Sandbox from './components/Sandbox1.vue';
+import Sandbox from './components/Sandbox2.vue';
 
 export default {
   name: 'App',
