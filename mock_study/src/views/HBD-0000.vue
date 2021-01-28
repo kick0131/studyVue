@@ -3,7 +3,7 @@
     <PropertyControlHeader
       v-model="editable"
       :valid="true"
-      title="手帳データ"
+      title="PDFデータ"
       :update="update"
       :abort="abort"
     />
