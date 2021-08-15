@@ -1,0 +1,85 @@
+<html>
+  <body>
+    <div id="app">
+      <main-component></main-component>
+    </div>
+    <!-- Vue3.x -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- Vue2.x -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script> -->
+    <script>
+      // コンポーネント定義
+      let Pokemon = {
+        template: 
+          '<div>' +
+            '<slot name="header">header</slot>' +
+            '<br>' +
+            'hello <slot>pikachu</slot>!!' +
+          '</div>'
+      }
+      // Vueルートインスタンス
+      Vue.createApp({})
+      .component('main-component', {
+        props:['init'],
+        template: 
+        `
+        <p>
+          {{state.msg}} {{state.myName}}
+          <button @click="sayHello('sample', $event)">Hi!</button>
+        </p>
+        <p>
+          <label for="name">氏名:</label>
+          <input type="text" id="name" v-model="state.myName" />
+        </p>
+        <p>
+          <input type="checkbox" id="show" v-model="state.toggle" />
+          <p v-show="state.toggle">表示非表示</p>
+        </p>
+        <p>
+          <ul>
+          <li v-for="(val, key, i) in informations">
+            {{ key }} : {{ val }}
+          </li>
+          </ul>
+        </p>
+        <p>
+          <poke-mon>
+            <template v-slot:header>
+            <h3>ポケモン</h3>
+            </template>
+            Rukario
+          </poke-mon>
+        </p>
+        `,
+        // Composition API
+        setup(props) {
+          // データオブジェクト
+          const state = Vue.reactive({
+            msg: 'Welcome',
+            myName: 'Adam',
+            toggle: true,
+          })
+          const sayHello = function(message, e){
+            console.log(message);
+            console.log(e);
+            this.msg = 'Hello!';
+          }
+          return {
+            state, sayHello
+          }
+        },
+        computed:{
+          informations: function(){
+            return {
+                email: 'hoge@email.com',
+                name: 'developper',
+            };
+          }
+        },
+        components: {
+          'poke-mon': Pokemon
+        }
+      }).mount('#app');
+    </script>
+  </body>
+</html>
