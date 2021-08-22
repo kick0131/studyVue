@@ -11,18 +11,19 @@
 ### ファイル説明
 | ファイル名 | 説明 |
 | -- | -- |
-|  |  |
+| index.js | Basic認証コード、Lambda@Edge登録ソース |
+| localmain.js | index.jsのローカル動作用nodeサーバ |
 
 ### 起動方法
 ```node.js
-node index.js
+node localmain.js
 ```
 - Basic認証のアカウントは`admin/password`
 - 認証範囲のパスは`public/menber/`
 
 ### その他
 Strictモードで起動(ファイル先頭行に'use strict'記載)
-http://localhost:3000/member/にアクセスしてBasic認証の動作確認
+`http://localhost:3000/member/`にアクセスしてBasic認証の動作確認
 
 
 ### 参考サイト
