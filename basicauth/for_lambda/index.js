@@ -18,12 +18,10 @@ function handler(event, context, callback) {
 
   const authUser = 'admin'; // Basic認証のユーザー名
   const authPass = 'password'; // Basic認証のパスワード
-
   const authString = 'Basic ' + createBasicAuthAccont(authUser, authPass);
 
-  console.log('== headers.authorization : ');
-  console.log(headers.authorization);
-  console.log('== headers.authorization[0].value : ' + headers.authorization[0].value);
+  // Basic認証ロジック
+  console.log('== headers.authorization : ' + headers.authorization);
   if (typeof headers.authorization == 'undefined' || headers.authorization[0].value != authString) {
     // 認証NG
     const body = 'Unauthorized';
@@ -90,6 +88,29 @@ function isUser(_auth) {
   return false;
 }
 
+// URLで指定したパスのファイルを表示する
+function viewpage(url, res) {
+  if (fs.existsSync(url)) {
+    fs.readFile(url, (err, data) => {
+      if (!err) {
+        res.writeHead(200, { 'Content-Type': getType(url) });
+        res.end(data);
+        console.log('== 200 OK.');
+      } else {
+        // Server Error
+        console.log('== Server Error.');
+        res.statusCode = 500;
+        res.end();
+      }
+    });
+  } else {
+    // File Not Found
+    console.log('== File Not Found.');
+    res.statusCode = 404;
+    res.end();
+  }
+}
+
 // サーバメイン処理
 var server = http.createServer(function (req, res) {
   console.log('call createServer');
@@ -99,21 +120,22 @@ var server = http.createServer(function (req, res) {
   if (url.startsWith(basic_realm)) {
     console.log('== 入力時のBasic認証情報 : ' + req.headers.authorization);
 
+    // ハンドラ関数が期待している型に合わせて情報を設定
     const event = {
       Records: [
         {
           cf: {
             request: {
               headers: {
-                authorization: [
-                  { value: req.headers.authorization }
-                ]
+                // Basic認証情報
+                authorization: [{ value: req.headers.authorization }]
               }
             }
           }
         }
       ]
     };
+    // 未使用
     const context = {
       test: 'hoge'
     };
@@ -124,48 +146,20 @@ var server = http.createServer(function (req, res) {
     // 認証失敗時:レスポンスボディの情報
     function callback(arg1, arg2) {
       console.log('call callback arg1:' + arg1);
-      // console.log(arg2);
       console.log('writableEnded : ' + res.writableEnded);
 
-      // if (!res.writableEnded) {
-      if (true) {
-        // 認証OK時
+      if (!res.writableEnded) {
         if (arg1) {
+          // 認証OK時
           var url = 'public' + (req.url.endsWith('/') ? req.url + 'index.html' : req.url);
-          if (fs.existsSync(url)) {
-            fs.readFile(url, (err, data) => {
-              if (!err) {
-                res.writeHead(200, { 'Content-Type': getType(url) });
-                res.end(data);
-                console.log('== 200 OK.');
-              } else {
-                // Server Error
-                console.log('== Server Error.');
-                res.statusCode = 500;
-                res.end();
-              }
-            });
-          } else {
-            // File Not Found
-            console.log('== File Not Found.');
-            res.statusCode = 404;
-            res.end();
-          }
+          viewpage(url, res);
         } else {
+          // 認証NG時
           // 401 UnAuthorized とBasic認証の要求ヘッダを応答
           res.statusCode = Number(arg2.status);
           res.statusDescription = arg2.statusDescription;
           res.setHeader('WWW-Authenticate', 'Basic realm="' + basic_name + '"');
           res.end();
-
-          // const response = {
-          //   status: '401',
-          //   statusDescription: 'Unauthorized',
-          //   body: body,
-          //   headers: {
-          //     'www-authenticate': [{ key: 'WWW-Authenticate', value: 'Basic' }]
-          //   }
-          // };
         }
       }
     }
@@ -173,7 +167,7 @@ var server = http.createServer(function (req, res) {
     handler(event, context, callback);
   } else {
     console.log('認証範囲外');
-    res.end();
+    viewpage(url, res);
   }
 });
 
