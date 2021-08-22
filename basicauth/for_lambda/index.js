@@ -37,7 +37,7 @@ module.exports.handler = (event, context, callback) => {
   } else {
     // 認証OK
     console.log('BasicAuth success');
-    // callback(null, request);
-    callback(true, request);
+    console.log(request);
+    callback(null, request);
   }
 }

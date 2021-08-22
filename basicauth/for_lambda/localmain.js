@@ -11,12 +11,6 @@ var fs = require('fs');
 var basic_realm = 'public/member/';
 var basic_name = 'simple-nodejs_member';
 
-// Basic認証アカウント群
-// useID:passowrdをBase64エンコードしたもの
-var accounts = [
-  'YWRtaW46cGFzc3dvcmQ=' // admin:password
-];
-
 // 拡張子に応じたコンテントタイプを返却
 function getType(_url) {
   var types = {
@@ -35,15 +29,6 @@ function getType(_url) {
   return 'text/plain';
 }
 
-// ユーザ認証
-function isUser(_auth) {
-  for (var l = 0; l < accounts.length; l++) {
-    if (accounts[l] == _auth) {
-      return true;
-    }
-  }
-  return false;
-}
 
 // URLで指定したパスのファイルを表示する
 function viewpage(url, res) {
@@ -103,10 +88,11 @@ var server = http.createServer(function (req, res) {
     // 認証失敗時:レスポンスボディの情報
     function callback(arg1, arg2) {
       console.log('call callback arg1:' + arg1);
+      console.log('call callback arg2.headers:' + JSON.stringify(arg2.headers, null, 2));
       console.log('writableEnded : ' + res.writableEnded);
 
       if (!res.writableEnded) {
-        if (arg1) {
+        if (!(typeof arg2.headers.authorization == 'undefined')) {
           // 認証OK時
           var url = 'public' + (req.url.endsWith('/') ? req.url + 'index.html' : req.url);
           viewpage(url, res);
