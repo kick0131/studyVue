@@ -24,14 +24,14 @@ const isIpAddrRange = (remoteIp, acceptIp, cidr) => {
 // _inRange()をCIDR形式の文字列対応に書き換え
 // remoteIp     : 文字列のIPv4形式を期待('192.168.0.0')
 // acceptCidrIp : CIDR付きのIPv4ネットワークアドレスを期待('192.168.0.0/16')
-const isIpAddrRange2 = (remoteIp, acceptCidrIp) => {
-    ip = acceptCidrIp.split('/');
-    acceptIp = ip[0];
-    cidr = ip[1];
+module.exports = isIpAddrRange2 = (remoteIp, acceptCidrIp) => {
+    const ip = acceptCidrIp.split('/');
+    const acceptIp = ip[0];
+    const cidr = ip[1];
     return isIpAddrRange(remoteIp, acceptIp, cidr);
 }
 
-
-const targetip = '192.168.0.1';
-const cidrip = '192.168.0.0/16'
-console.log('in CIDR range? : ' + isIpAddrRange2(targetip, cidrip));
+// ファイル単体で動作確認する場合、コメントを有効にする
+// const targetip = '192.168.0.1';
+// const cidrip = '192.168.0.0/16'
+// console.log('in CIDR range? : ' + isIpAddrRange2(targetip, cidrip));
