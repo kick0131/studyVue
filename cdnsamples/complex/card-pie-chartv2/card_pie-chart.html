@@ -14,16 +14,21 @@
       <v-app>
         <v-main>
           <template>
-            <v-card class="mx-auto" max-width="500" max-height="800">
+            <v-card class="mx-auto" max-width="500">
               <v-card-title>円グラフサンプル</v-card-title>
               <v-card-text>
                 <!-- v2 Vueコンポーネント化 -->
                 <pie-chart></pie-chart>
-                <line-chart></line-chart>
               </v-card-text>
               <v-card-actions>
                 <v-btn text color="deep-purple accent-4"> Randum Data </v-btn>
               </v-card-actions>
+            </v-card>
+            <v-card class="mx-auto" max-width="500">
+              <v-card-title>棒グラフサンプル</v-card-title>
+              <v-card-text>
+                <line-chart></line-chart>
+              </v-card-text>
             </v-card>
           </template>
         </v-main>
