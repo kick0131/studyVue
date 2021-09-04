@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <v-app>
+        <v-main>
+          <template>
+            <v-card class="mx-auto" max-width="500" max-height="800">
+              <v-card-title>円グラフサンプル</v-card-title>
+              <v-card-text>
+                <!-- v2 Vueコンポーネント化 -->
+                <pie-chart></pie-chart>
+                <line-chart></line-chart>
+              </v-card-text>
+              <v-card-actions>
+                <v-btn text color="deep-purple accent-4"> Randum Data </v-btn>
+              </v-card-actions>
+            </v-card>
+          </template>
+        </v-main>
+      </v-app>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <!-- v2 vue-chartjs使用の為、バージョンを落とす -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
+    <!-- v2 スクリプト部分を分離 -->
+    <script src="./comp-line-chart.js"></script>
+    <script src="./comp-pie-chart.js"></script>
+    <script src="./comp-vue.js"></script>
+  </body>
+</html>
