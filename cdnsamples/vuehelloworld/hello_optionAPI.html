@@ -1,0 +1,86 @@
+<html>
+  <body>
+    <div id="app">
+      <p>
+        <!-- v-model引数呼び出しサンプル -->
+        {{msg}} {{myName}}
+        <button @click="sayHello('sample', $event)">Hi!</button>
+      </p>
+      <p>
+        <label for="name">氏名:</label>
+        <input type="text" id="name" v-model="myName" />
+      </p>
+      <p>
+        <!-- v-showサンプル -->
+        <input type="checkbox" id="show" v-model="toggle" />
+        <p v-show="toggle">表示非表示</p>
+      </p>
+      <p>
+        <!-- v-forサンプル -->
+        <ul>
+        <li v-for="(val, key, i) in informations">
+          {{ key }} : {{ val }}
+        </li>
+        </ul>
+      </p>
+      <p>
+        <!-- コンポーネントの呼び出し -->
+        <poke-mon>
+          <template v-slot:header>
+           <h3>ポケモン</h3>
+          </template>
+          Rukario
+        </poke-mon>
+      </p>
+ 
+    </div>
+    <!-- Vue3.x -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- Vue2.x -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script> -->
+    <script>
+      // コンポーネント定義
+      let Pokemon = {
+        template: 
+          '<div>' +
+            '<slot name="header">header</slot>' +
+            '<br>' +
+            'hello <slot>pikachu</slot>!!' +
+          '</div>'
+      }
+      // Vueルートインスタンス
+      Vue.createApp({
+        data: function () {
+          return {
+            msg: 'Welcome',
+            myName: 'Adam',
+            toggle: true,
+            title: 'v-slot test',
+            text: 'hello world'
+          };
+        },
+        methods: {
+          sayHello: function (message, e) {
+            console.log(message);
+            console.log(e);
+            this.msg = 'Hello!';
+          },
+          mounted: function () {
+            //表示後にやりたいことはここに書ける
+          }
+        },
+        computed:{
+          informations: function(){
+            return {
+                email: 'hoge@email.com',
+                name: 'developper',
+            };
+          }
+        },
+        components: {
+          'poke-mon': Pokemon
+        }
+      }).mount('#app');
+    </script>
+  </body>
+</html>
