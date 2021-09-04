@@ -1,6 +1,19 @@
 # Sample projects
 
 ## Usage
+### Create Project
+1. run `vue cli`
+    ```
+    vue create my-project
+    ```
+2. install first setup
+    ```
+    cd my-project
+    vue add vuetify
+    yarn add vue-chartjs
+    ```
+
+### Execute Project
 1. change into sample project directory.
     ```
     ex)
@@ -19,28 +32,16 @@
     yarn serve
     ```
 
-## Project Information
-
-### crudFirestore
-Firestore access sample.
-
-### google-map
-Use Google Map API.
-
-### mock_study
-Simple Vuetify SPA page sample.
-
-### pushReceiver
-Receive Firebase Cloud Messaging(Push notification).
-
-### routerandvuex
-Learn vue-router and vuex libraly move.
-
 ## commands
 ### create project
 ```
 vue create (projectname)
 ```
+### uninstall module
+```
+yarn [global] remove <module>
+```
+
 ### formatter
 ***for Mac***
 ```
