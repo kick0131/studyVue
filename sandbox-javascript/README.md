@@ -1,14 +1,9 @@
 # sandbox-javascript
 
 ## Get start
-```
+```bash
+# module install
 yarn install
+# run server
 yarn serve
 ```
-
-## Add modules
-```
-vue add vuetify
-```
-
-

@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="promise">
     <h1>{{ msg }}</h1>
     <!-- 実行メソッドを切り替えて動作確認 -->
     <button @click="callPromise2">実行</button>

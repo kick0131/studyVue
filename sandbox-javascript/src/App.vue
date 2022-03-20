@@ -7,17 +7,21 @@
      -->
     <!-- <img alt="Vue logo3" src="./assets/logo.png" /> -->
     <img alt="Vue logo3" src="./logo.png" />
-    <Sandbox msg="Welcome to Your Vue.js App" />
+    <PromiseTest msg="promise test" />
+    <!-- <FileDownloadTest msg="download test" /> -->
   </div>
 </template>
 
 <script>
-import Sandbox from './components/Sandbox2.vue';
+// components配下の各種サンプルコードに置き換えて動作確認
+// import FileDownloadTest from './components/FileDownload.vue';
+import PromiseTest from './components/HowToUsePromise.vue';
 
 export default {
   name: 'App',
   components: {
-    Sandbox
+    // FileDownloadTest,
+    PromiseTest
   }
 };
 </script>
