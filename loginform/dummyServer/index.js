@@ -17,6 +17,11 @@ app.use(cors({
   optionsSuccessStatus: 200
 }))
 
+app.get('/', (req, res) => {
+  console.log('=== get called ===')
+  res.send(users['hoge@hoge.com']);
+});
+
 app.post('/', (req, res) => {
   console.log('=== post called ===')
   console.log(req.body)
