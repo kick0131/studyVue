@@ -6,7 +6,7 @@ import mutations from '@/store/modules/mutations'
 const state = {
   count: 0,
   auth: {
-    token: localStorage.getItem('token'),
+    token: null,
     userId: null
   },
   tasks: [

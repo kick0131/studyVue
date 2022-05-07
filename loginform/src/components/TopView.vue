@@ -15,7 +15,7 @@ export default defineComponent({
       return this.$store
         .dispatch('logout')
         .then(() => {
-          this.$router.push('/login');
+          this.$router.push('/');
         })
         .catch(error => {
           throw error;

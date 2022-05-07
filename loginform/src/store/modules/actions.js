@@ -6,7 +6,7 @@ export default {
     console.log('=== login called ===')
     return auth.login(data.user)
       .then((res) => {
-        localStorage.setItem('token', res.data.token)
+        // localStorage.setItem('token', res.data.token)
         commit(types.LOGIN, res.data)
       })
       .catch(error => { throw error })
@@ -14,7 +14,7 @@ export default {
   logout({ commit }) {
     return auth.logout()
       .then(() => {
-        localStorage.removeItem('token')
+        // localStorage.removeItem('token')
         commit(types.LOGOUT, { token: null, userId: null })
       })
       .catch(error => { throw error })
