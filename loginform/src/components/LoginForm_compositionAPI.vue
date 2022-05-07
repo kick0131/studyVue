@@ -1,3 +1,5 @@
+// write with Composition API
+
 <template>
   <div>
     <ul>
@@ -9,24 +11,13 @@
   </div>
 </template>
 
-<script>
-import LoginForm from './components/LoginForm.vue';
+<script setup>
+import LoginForm from './LoginForm.vue';
 import { useStore } from 'vuex';
 
-export default {
-  name: 'App',
-  data: function(){
-    const store = useStore();
-    const mydata = store.state.tasks;
-    console.log(mydata)
-    return {
-      mydata
-    }
-  },
-  components: {
-    LoginForm
-  }
-};
+const store = useStore();
+const tasks = store.state.tasks;
+console.log(tasks);
 </script>
 
 <style>

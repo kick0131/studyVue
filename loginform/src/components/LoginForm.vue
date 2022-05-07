@@ -37,7 +37,6 @@ export default defineComponent({
     }
   },
   methods: {
-    // loginaction: function() {
     handle() {
       // alert('ログイン実行')
       console.log(this)
@@ -47,7 +46,7 @@ export default defineComponent({
           'password': this.password
         }
       })
-      // .catch(err => {throw err})
+      .catch(err => {throw err})
     }
   }
 });

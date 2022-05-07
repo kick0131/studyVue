@@ -1,4 +1,18 @@
 # loginform
+```bash
++------------+    +------------+
+| Login Form |    | API Server |
+| :8080      +----+ :8081      |
++------------+    +------------+
+
+```
+
+## 注意
+まだ正しく動作できていないし、余計なコンポーネントがある
+- ログインページからTopページに遷移できない
+- 勉強用に比較したvueファイルが残っている
+  - LoginForm_compositionAPI : compositionAPI形式で記載したログインフォーム
+  - LoginForm_optionAPI : optionAPI形式で記載したログインフォーム
 
 ## Commands
 ### Project setup

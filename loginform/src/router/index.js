@@ -5,7 +5,7 @@ import { authorizeToken } from './util'
 
 const routes = [
   {
-    path: '/',
+    path: '/Top',
     name: 'Top',
     component: Top,
     meta: {
@@ -14,7 +14,7 @@ const routes = [
 
   },
   {
-    path: '/login',
+    path: '/',
     name: 'Login',
     component: Login
   }
@@ -22,6 +22,7 @@ const routes = [
 
 const router = createRouter({
   history: createWebHashHistory(),
+  base: process.env.BASE_URL,
   routes
 })
 router.beforeEach(authorizeToken)
