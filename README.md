@@ -1,6 +1,39 @@
 # Sample projects
 
+## Environment
+- WLS(Ubuntu)
+- node
+- npm
+
+## Setup
+```bash
+# nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
+# node
+nvm install node
+
+# Vue CLI
+npm install -g @vue/cli
+
+```
+
 ## Usage
+### Vue3 + Vuetify on Vite
+```bash
+# Create Vite Project
+npm create vite@latest
+# Add Vuetify
+vue add vuetify
+
+# run application
+cd <your project>
+npn i
+npm run dev
+```
+
+
+## Usage(Old)
 ### Create Project
 1. run `vue cli`
     ```
@@ -63,3 +96,4 @@ see `.prettierrc.js`
 
 ## ToDo
 - use [ngrok](https://ngrok.com/download)
+
