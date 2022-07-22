@@ -2,7 +2,7 @@
 
 ## Environment
 - WLS(Ubuntu)
-- node
+- node(nvm)
 - npm
 
 ## Setup

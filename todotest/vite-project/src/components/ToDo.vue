@@ -28,13 +28,13 @@
         <v-row justify="center">
           <v-text-field v-bind:value="dispname" readonly></v-text-field>
           <v-text-field v-bind:value="visualize" readonly></v-text-field>
-          <v-btn @click="visualchange" depressed color="primary"> Toggle </v-btn>
         </v-row>
       </v-col>
       <v-col cols="12">
         <v-row justify="center">
           <v-btn @click="func1" depressed color="secondary"> {{ dispname }} </v-btn>
           <v-btn @click="func2" depressed color="secondary"> Func2 </v-btn>
+          <v-btn @click="visualchange" depressed color="primary"> Toggle </v-btn>
         </v-row>
       </v-col>
     </v-row>
