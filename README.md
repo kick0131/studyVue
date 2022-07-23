@@ -96,4 +96,21 @@ see `.prettierrc.js`
 
 ## ToDo
 - use [ngrok](https://ngrok.com/download)
+- use [Pinia](https://pinia.vuejs.org/) PiniaはVuexの後継の位置づけ
 
+## Vuetify Theme
+write vuetify.js
+```bash
+export default createVuetify(
+  {
+    theme: {
+      defaultTheme: 'dark'
+    },
+  }
+)
+```
+
+https://next.vuetifyjs.com/en/features/theme/
+
+### wireframe
+https://vuetifyjs.com/ja/getting-started/wireframes/#section-30b530f330d730eb
