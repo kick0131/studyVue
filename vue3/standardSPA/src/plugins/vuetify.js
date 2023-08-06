@@ -1,6 +1,7 @@
 // Styles
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
+import colors from 'vuetify/lib/util/colors';
 
 // Vuetify
 import { createVuetify } from 'vuetify'
@@ -8,9 +9,11 @@ import { createVuetify } from 'vuetify'
 export default createVuetify(
   {
     theme: {
-      defaultTheme: 'myCustomTheme',
+      // themesで定義された中から選ぶ
+      //defaultTheme: 'myCustomTheme',
+      defaultTheme: 'mylight',
       themes: {
-        // キー名はVuetify固有、色は16進数指定
+        // キー名はVuetify固有
         myCustomTheme: {
           colors: {
             background: '#FFFFFF',
@@ -24,6 +27,20 @@ export default createVuetify(
             info: '#4CAF50',
             success: '#2196F3',
             warning: '#FF5722',
+          }
+        },
+        mylight: {
+          colors: {
+            background: colors.grey.lighten3,
+            surface: colors.grey.lighten3,
+            primary: colors.lightBlue.lighten4,
+            secondary: colors.lightBlue.darken1,
+            accent: colors.lightBlue.accent2,
+            error: colors.pink.lighten2,
+            warning: colors.amber.lighten2,
+            info: colors.cyan.lighten2,
+            success: colors.blue.lighten2,
+            mycolor: "#e0e0e0",
           }
         }
       },

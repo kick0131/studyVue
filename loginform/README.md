@@ -56,7 +56,15 @@ yarn lint
 
 リクエストを受け付け、固定JSONのHTTP 200を返す
 
+## ディレクトリ構成
+```bash
+dummyServer/
+  index.js
+  packagejson
+```
+
 ## usage
+dummyServer配下で実行する事
 ```bash
 # 必要なモジュールのインストール
 yarn init

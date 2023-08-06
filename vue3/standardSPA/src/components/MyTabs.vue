@@ -1,6 +1,6 @@
 <template>
   <v-tabs>
-    <v-tab v-for="tabitem in tabitems" :key="tabitem.dispname" @click="navigationtab(tabitem.action)" :color="tabitem.color" >{{ tabitem.dispname }}</v-tab>
+    <v-tab v-for="tabitem in tabitems" :key="tabitem.dispname" @click="navigationtab(tabitem.action)" >{{ tabitem.dispname }}</v-tab>
   </v-tabs>
 </template>
 
@@ -9,27 +9,22 @@
 import { useRouter } from "vue-router";
 const router = useRouter();
 
-
-
 // タブ要素
 // dispname : 表示名
 // action   : 処理名
-// color    : 配色
+// color    : 配色(使わない方がバランスが良い)
 const tabitems = [
   {
     dispname: "ログイン",
     action: "loginbtn",
-    color: "primary",
   },
   {
     dispname: "ログアウト",
     action: "logoutbtn",
-    color: "secondary",
   },
   {
     dispname: "ToDo",
     action: "todobtn",
-    color: "accent",
   },
 ];
 

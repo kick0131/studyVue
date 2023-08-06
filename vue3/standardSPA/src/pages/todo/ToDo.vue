@@ -1,5 +1,4 @@
 <script setup>
-import TopNavbar from "../../components/TopNavbar.vue";
 
 data: () => ({
   ecosystem: [
@@ -20,7 +19,6 @@ data: () => ({
 </script>
 
 <template>
-  <TopNavbar />
   <v-container>
     <v-row class="text-center">
       <v-col class="mb-4">
@@ -34,7 +32,6 @@ data: () => ({
 <script>
 export default {
   components: {
-    TopNavbar,
   },
   computed: {},
   mounted: () => {},

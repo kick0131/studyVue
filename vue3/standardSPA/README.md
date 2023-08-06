@@ -6,21 +6,11 @@
 |vue-router | ルーティング |
 |pinia | 状態管理 |
 
-## setup
+## usage
 ```bash
-# install
-npm create vite@latest
-cd <project>
 npm i
-
-# library
-npm install vue-router@4 --save
-npm install pinia --save
-
-# vuetify
-vue add vuetify
+npm run dev
 ```
-
 
 ## description
 ### レイアウトについて
@@ -130,5 +120,12 @@ function logoutbtn() {
 
 ## 共通事項
 ### カラーテーマ
-/plugins/vuetify.js参照
+src/plugins/vuetify.js参照
 
+# トラブルシュート
+## Vite + Vuetify3が動かない
+vue add vuetifyでVuetify 3 Preview(Vuetify3)をインストールしても動かない。  
+vuetify本体がインストールされていなかった。
+```bash
+npm install vuetify@v3.0.0-beta.0
+```
