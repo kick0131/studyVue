@@ -14,41 +14,21 @@ npm run dev
 
 ## description
 ### レイアウトについて
-3ペイン構成
-- メニューバー
-- 左ペイン
-- 右ペイン
-
-### コンポーネントについて
-| ライブラリ | 説明 |
-|-- | --|
-|MyLinkLists | router-linkを使った画面遷移、左ペインに配置 |
-|MyTabs | タブを使った画面遷移、メニューバーにタブとして配置 |
-|TopNavbar | ボタンを使った画面遷移、ページ上部に配置 |
-
-
-### ページの作成
-/pagesディレクトリを作成し、ページ毎のコンポーネントを作成
+3ペイン構成で作成
 ```bash
-/components
-  TopNavbar.vue  // ナビゲーション定義
-/pages
-  /home
-    Home.vue   // Home画面
-  /login
-    Login.vue  // ログイン画面
-  /todo
-    ToDo.vue   // ToDo画面
++-------------------------------+
+| menu                          |
++-------------------------------+
++------+ +----------------------+
+| list | | main                 |
+|      | |                      |
++------+ +----------------------+
 ```
-
-```bash
-# シンプルなナビゲーション定義
-<template>
-  <router-link to="/">ホーム</router-link>
-  <router-link to="/todo/">ToDo</router-link>
-  <router-link to="/login/">ログイン</router-link>
-</template>
-```
+| 位置 | コンポーネント | 説明 |
+|--    |-- | --|
+| list | /components/MyLinkLists | リンクリスト |
+| menu | /components/MyTabs      | メニューバー |
+| main | /pages/*                | メインページ |
 
 ### ルーティング定義
 パスとコンポーネントの紐づけを定義する
@@ -76,6 +56,9 @@ export default function (history) {
     routes
   })
 }
+
+# 表示させたい場所にrouter-viewを記載する(App.vue)
+<router-view></router-view>
 ```
 
 ### ルーティングの作成
@@ -121,6 +104,16 @@ function logoutbtn() {
 ## 共通事項
 ### カラーテーマ
 src/plugins/vuetify.js参照
+
+# ToDo
+- ページ遷移の処理の共通化
+  - スクリプトファイルにして各コンポーネントはimportできるのでは？
+- 各ページの実装
+  - それぞれReadme.mdページをつけた方が良さそう
+  - ログイン：認証
+  - API(http)呼び出し
+- CI対応
+
 
 # トラブルシュート
 ## Vite + Vuetify3が動かない
