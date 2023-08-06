@@ -1,21 +1,17 @@
-## 基本情報
+# SPAサンプル
 
----
-
-### ビルド
-```
+### 基本操作
+```bash
+# ビルド
 yarn build
+# ローカルサーバ起動
+yarn serve
 ```
 
 ### デプロイ
-バージョン名  : handbook-[Web App ProjectName]
+バージョン名  : sample-[Web App ProjectName]
 ```
-gcloud app deploy --version handbook-mock --project (PJ Name) --no-promote
-```
-
-### アクセスURL
-```
-https://(PJName).an.r.appspot.com/
+gcloud app deploy --version sample-mock --project (PJ Name) --no-promote
 ```
 
 ### 課題
