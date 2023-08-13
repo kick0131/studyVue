@@ -1,13 +1,9 @@
 <script setup lang="ts">
-
 // 最終的にDB入出力を備えた画面にしたい
-
 
 // https://ja.vuejs.org/guide/typescript/composition-api.html#typing-ref
 import { ref } from 'vue';
 import type { Ref } from 'vue';
-let id: number = 0;
-
 
 // タスク定義
 // - id、タスク、完了フラグの構成
@@ -19,8 +15,13 @@ interface Task {
   completed: boolean;
 }
 const tasks: Ref<Array<Task>> = ref([]);
+
+// 入力フォームの内容
+let id: number = 0;
 const task: Ref<string> = ref('');
 
+
+// function ===================================
 // 入力値の文字列をタスク配列に追加
 const addTask = () => {
   tasks.value.push({ id, task: task.value, completed: false });
@@ -44,6 +45,18 @@ const deleteTask = id => {
       </v-col>
     </v-row>
 
+    <!-- 入力フォーム -->
+    <v-form @submit.prevent="addTask">
+      <v-row>
+        <v-col cols="10">
+          <v-text-field v-model="task" />
+        </v-col>
+        <v-col cols="2">
+          <v-btn color="success" @click="addTask">タスクを登録</v-btn>
+        </v-col>
+      </v-row>
+    </v-form>
+
     <!-- 入力結果表示 -->
     <v-list-item v-for="item in tasks" :key="item.id">
       <v-row>
@@ -59,16 +72,26 @@ const deleteTask = id => {
       </v-row>
     </v-list-item>
 
-    <!-- 入力フォーム -->
-    <v-form @submit.prevent="addTask">
-      <v-row>
-        <v-col cols="10">
-          <v-text-field v-model="task" />
-        </v-col>
-        <v-col cols="2">
-          <v-btn color="success" @click="addTask">タスクを登録</v-btn>
-        </v-col>
-      </v-row>
-    </v-form>
+    <!-- テーブル -->
+
+    <!-- <v-simple-table dense>
+      <template v-slot:default>
+        <thead>
+          <tr>
+            <th class="text-left">Id</th>
+            <th class="text-left">Task</th>
+            <th class="text-left">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in tasks" :key="item.id">
+            <td>{{ item.id }}</td>
+            <td>{{ item.task }}</td>
+            <td><v-btn @click="deleteTask(item.id)">削除</v-btn></td>
+          </tr>
+        </tbody>
+      </template>
+    </v-simple-table>
+ -->
   </v-container>
 </template>
